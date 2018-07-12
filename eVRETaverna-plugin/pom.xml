@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>eu.vre4eic</groupId>
+		<artifactId>eVRETaverna</artifactId>
+		<version>0.2</version>
+	</parent>
+	<artifactId>eVRETaverna-plugin</artifactId>
+	<packaging>taverna-plugin</packaging>
+	<name>The e-VRE Taverna plugin</name>
+	<description>Access e-VRE Web Resources with Taverna</description>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>net.sf.taverna.t2.maven.plugins</groupId>
+				<artifactId>maven-taverna-plugin</artifactId>
+				<version>0.1.1</version>
+				<extensions>true</extensions>
+				<configuration>
+					<provider>eu.vre4eic</provider>
+					<tavernaVersion>${t2.workbench.version}</tavernaVersion>
+				</configuration>
+			</plugin>
+			
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>eVRETaverna-activity</artifactId>
+			<version>0.2</version>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>eVRETaverna-activity-ui</artifactId>
+			<version>0.2</version>
+		</dependency>
+		
+	</dependencies>
+</project>

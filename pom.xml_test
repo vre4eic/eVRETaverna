@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<prerequisites>
+		<maven>3.0.0</maven>
+	</prerequisites>
+	<groupId>eu.vre4eic</groupId>
+	<artifactId>eVRETaverna</artifactId>
+	<version>0.2</version>
+	<packaging>pom</packaging>
+	<name>e-VRE Taverna project</name>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>	
+		<!--  Update according to latest Taverna version in 
+		www.mygrid.org.uk/dev/wiki/display/developer/Maven+module+version+numbers
+		 -->
+		<t2.core.version>1.5</t2.core.version>
+		<t2.activities.version>1.5</t2.activities.version>
+		<t2.ui.api.version>1.5</t2.ui.api.version>
+		<t2.ui.impl.version>1.5</t2.ui.impl.version>
+		<t2.workbench.version>2.5.0</t2.workbench.version>
+	</properties>
+  
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.2.1</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>jar</goal>
+							<goal>test-jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.4</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>test-jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.17</version>
+				<configuration>
+					<skip>false</skip>
+					<systemProperties>
+						<property>
+							<name>java.awt.headless</name>
+							<value>true</value>
+						</property>
+					</systemProperties>
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+ 
+	<repositories>
+	
+		<repository>
+			<!-- The myGrid repository for Taverna dependencies -->
+			<releases/>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<id>mygrid-repository</id>
+			<name>myGrid Repository</name>
+			<url>http://www.mygrid.org.uk/maven/repository</url>
+		</repository>
+		<!-- The repository that your jars are deployed to -->
+		
+		<repository>
+			
+			<id>my-repository</id>
+			<name>My Repository</name>
+			<!--
+			<url>http://philae.isti.cnr.it:8080/maven/</url>
+			  -->
+			<url>http://philae.isti.cnr.it:8080/WorkflowService/pluginrepository/</url>
+			
+		</repository>
+		 
+		 <!-- The repository that your snapshot jars are deployed to -->
+		 
+		<repository>
+			
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots/>
+			<id>my-snapshot-repository</id>
+			<name>My snapshot Repository</name>
+			<url>http://philae.isti.cnr.it:8080/WorkflowService/pluginrepository/</url>
+		</repository>
+		 
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+		<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<id>mygrid-repository</id>
+			<name>myGrid Repository</name>
+			
+			<url>http://www.mygrid.org.uk/maven/repository</url>
+			 <!-- 
+			 <url>http://philae.isti.cnr.it:8080/repository</url>
+			  -->
+		</pluginRepository>
+	</pluginRepositories>
+
+	<!-- The location of your plugin site -->
+	<distributionManagement>
+		<repository>
+			<id>my-plugin-site</id>
+			<name>My Plugin Site</name>
+			
+			 <url>http://localhost:8081/artifactory/libs-release-local</url>
+			 
+			<!--<url>file:///var/lib/tomcat8/webapps/WorkflowService/pluginrepository/</url>-->
+			
+		</repository>
+		<snapshotRepository>
+			<id>my-test-plugin-site</id>
+			
+			<url>file:///tmp/test-plugins/</url>
+			<!-- 
+			<url>file:///var/lib/tomcat8/webapps/repository/</url>
+			 -->
+			 
+		</snapshotRepository>
+	</distributionManagement>
+
+  <modules>
+    <module>eVRETaverna-activity</module>
+    <module>eVRETaverna-activity-ui</module>
+    <module>eVRETaverna-plugin</module>
+  </modules>
+</project>
