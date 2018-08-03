@@ -32,6 +32,7 @@
 					<source>1.7</source>
 					<target>1.7</target>
 				</configuration>
+				
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -41,7 +42,7 @@
 					<execution>
 						<goals>
 							<goal>jar</goal>
-							<goal>test-jar</goal>
+							<!--  <goal>test-jar</goal>-->
 						</goals>
 					</execution>
 				</executions>
@@ -53,6 +54,7 @@
 				<executions>
 					<execution>
 						<goals>
+							<!--  <goal>jar</goal>-->
 							<goal>test-jar</goal>
 						</goals>
 					</execution>
@@ -89,40 +91,33 @@
 	
 		<repository>
 			<!-- The myGrid repository for Taverna dependencies -->
-			<releases/>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
+			
 			<id>mygrid-repository</id>
+			<releases/>
+				 
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
 			<name>myGrid Repository</name>
 			<url>http://www.mygrid.org.uk/maven/repository</url>
 		</repository>
-		<!-- The repository that your jars are deployed to -->
 		
-		<repository>
+		 <repository>
 			
-			<id>my-repository</id>
-			<name>My Repository</name>
-			<!--
-			<url>http://philae.isti.cnr.it:8080/maven/</url>
-			  -->
-			<url>http://philae.isti.cnr.it:8080/WorkflowService/pluginrepository/</url>
-			
-		</repository>
-		 
-		 <!-- The repository that your snapshot jars are deployed to -->
-		 
-		<repository>
-			
-			<releases>
+			<id>evre-repository</id>
+			 <releases>
 				<enabled>true</enabled>
 			</releases>
-			<snapshots/>
-			<id>my-snapshot-repository</id>
-			<name>My snapshot Repository</name>
-			<url>http://philae.isti.cnr.it:8080/WorkflowService/pluginrepository/</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots> 
+			<name>My Repository</name>
+			
+			<url>http://v4e-hub.isti.cnr.it:8080/repository/internal</url>
+			
 		</repository>
-		 
+		
+		
 	</repositories>
 
 	<pluginRepositories>
@@ -137,26 +132,45 @@
 			<name>myGrid Repository</name>
 			
 			<url>http://www.mygrid.org.uk/maven/repository</url>
+			
+			
+			
 			 <!-- 
 			 <url>http://philae.isti.cnr.it:8080/repository</url>
 			  -->
 		</pluginRepository>
+		
+		<pluginRepository>
+		<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<id>evre-plugin-site</id>
+			<name>e-VRE plugin Site</name>
+			
+			<url>http://v4e-hub.isti.cnr.it:8080/repository/internal/plugin/</url>
+			 
+		</pluginRepository>
+		 
 	</pluginRepositories>
 
 	<!-- The location of your plugin site -->
 	<distributionManagement>
 		<repository>
-			<id>my-plugin-site</id>
-			<name>My Plugin Site</name>
-			
+			<id>evre-plugin-site</id>
+			<name>e-VRE plugin Site</name>
+			<!--  
 			 
 			<url>file:///var/lib/tomcat8/webapps/WorkflowService/pluginrepository/</url>
-			
+			-->
+			<url>http://v4e-hub.isti.cnr.it:8080/repository/internal/plugin/</url>
 		</repository>
 		<snapshotRepository>
-			<id>my-test-plugin-site</id>
+			<id>evre-test-plugin-site</id>
 			
-			<url>file:///tmp/test-plugins/</url>
+			<url>http://v4e-hub.isti.cnr.it:8080/repository/internal/plugin/</url>
 			<!-- 
 			<url>file:///var/lib/tomcat8/webapps/repository/</url>
 			 -->

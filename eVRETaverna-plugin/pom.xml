@@ -19,7 +19,8 @@
 				<version>0.1.1</version>
 				<extensions>true</extensions>
 				<configuration>
-					<provider>eu.vre4eic</provider>
+					<!--  <provider>eu.vre4eic</provider>-->
+					<provider>v4e-hub.isti.cnr.it</provider>
 					<tavernaVersion>${t2.workbench.version}</tavernaVersion>
 				</configuration>
 			</plugin>

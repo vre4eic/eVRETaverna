@@ -14,7 +14,7 @@ import eu.vre4eic.eVRETaverna.VRE4EICActivityConfigurationBean;
 public class ExampleConfigureAction
 		extends
 		ActivityConfigurationAction<VRE4EICActivity, VRE4EICActivityConfigurationBean> {
-
+net.sf.taverna.raven.repository.impl.LocalRepository test;
 	public ExampleConfigureAction(VRE4EICActivity activity, Frame owner) {
 		
 		super(activity);
