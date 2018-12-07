@@ -1,3 +1,18 @@
+/*******************************************************************************
+ * Copyright 2018 cesare
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License.  You may obtain a copy
+ * of the License at
+ * 
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.  See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ ******************************************************************************/
 package eu.vre4eic.eVRETaverna.ui.serviceprovider;
 
 import java.io.BufferedReader;
@@ -146,15 +161,20 @@ public class EvreServiceProvider extends AbstractConfigurableServiceProvider<VRE
 		
 		String evreUrl=getConfiguration().getUri().toASCIIString();
 		
+		
 		URL loginUrl;
 		URL wsDescUrl;
 		
 		try {
 			//token=Common.getToken();
+			Common.setEvreUrl(new URL("http://v4e-lab.isti.cnr.it:8080/"));
+			
+			if (!evreUrl.equals(Common.getEvreUrl().toString()))
+				return;
 
 			Common.setUserId(uNm);
 			Common.setPassword(uPw);
-			Common.setEvreUrl(new URL("http://v4e-lab.isti.cnr.it:8080"));
+			//Common.setEvreUrl(new URL("http://v4e-lab.isti.cnr.it:8080"));
 	
 			
 			loginUrl = Common.getLoginUrl();
@@ -178,7 +198,10 @@ public class EvreServiceProvider extends AbstractConfigurableServiceProvider<VRE
 			
 			//get service descriptions references
 			//wsDescUrl=new URL("http://v4e-lab.isti.cnr.it:8080/WorkflowService/wfservice/getserviced?evresid="+uNm+"&token="+token.replaceAll("\"", "").trim());
+			
 			wsDescUrl=new URL(evreUrl+"/WorkflowService/wfservice/getserviced?evresid="+uNm+"&token="+token.replaceAll("\"", "").trim());
+			
+			
 			HttpURLConnection descCon= (HttpURLConnection) wsDescUrl.openConnection();
 			descCon.setRequestMethod("GET");
 			descCon.setDoInput(true);
@@ -211,7 +234,7 @@ public class EvreServiceProvider extends AbstractConfigurableServiceProvider<VRE
 		    	try {
 		    		
 				ApplicationNode an = astBuilder.buildAst(new URI(this.getConfiguration().getUri().toASCIIString()));
-		    						rs = an.getResources();
+		    				rs = an.getResources();
 		    						
 					for (ResourceNode r : rs) {
 						
@@ -227,8 +250,9 @@ public class EvreServiceProvider extends AbstractConfigurableServiceProvider<VRE
 		}
 		    
 		} catch (Exception e1) {
-			// TODO Auto-generatnew JsonParser().parsenew JsonParser().parseed catch block
+			//callBack.partialResults(catalogResults);
 			e1.printStackTrace();
+			return;
 		}
 		
 /*		for (int i = 1; i <= getConfiguration().getNumberOfServices(); i++) {
