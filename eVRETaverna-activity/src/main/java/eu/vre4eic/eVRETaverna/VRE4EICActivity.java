@@ -13,8 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  ******************************************************************************/
- ******************************************************************************/
- ******************************************************************************/
+ 
 package eu.vre4eic.eVRETaverna;
 
 import java.security.MessageDigest;
